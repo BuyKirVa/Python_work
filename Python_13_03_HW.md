@@ -1,58 +1,81 @@
 # Задания с перебором for.
-## Задания 1.
+## Задание 1.
 Напишите программу, которая ищет среди целых чисел, принадлежащих числовому отрезку [10000; 20001],
 числа, имеющие ровно 5 различных делителей. Выведите эти делители для каждого найденного 
 числа в порядке возрастания.
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+for n in range(10000, 20002):
+    a = 0
+    for i in range(1, n + 1):
+        if n % i == 0:
+            a += 1
+            if a > 5:
+                break
+    if a == 5:
+        s = []
+        for i in range(1, n + 1):
+            if n % i == 0:
+                s.append(i)
+        print(f"{n}: {s}")
 ```
 
-## Задания 2.
+## Задание 2.
 Напишите программу, которая ищет среди целых чисел, принадлежащих числовому
 отрезку [10000; 12345], простые числа. Выведите сумму этих чисел. 
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+a = 0
+for n in range(10000, 12345):
+    c = True
+    if n < 2:
+        c = False
+    else:
+        for i in range(2, n):
+            if n % i == 0:
+                c = False
+                break
+    if c:
+        a += n
+print(a)
 ```
 
-## Задания 3.
+## Задание 3.
 Обозначим через ДЕЛ(n, m) утверждение «натуральное число n делится без остатка на натуральное число m».
 Для какого наибольшего натурального числа А формула тождественно истинна 
 (т.е. принимает значение 1 при любом натуральном значении переменной x)? 
 Напишите программу для решения данной задачи. 
 (¬ДЕЛ(x, A) ∧ ДЕЛ(x, 4)) → ¬ДЕЛ(x, 9)
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+for A in range(1, 1000):
+    a = True
+    for x in range(1, 1000):
+        if ((x % A != 0) and (x % 4 == 0)) and (x % 9 == 0):
+            a = False
+            break
+    if a:
+        print(A)
+        break
 ```
 
-## Задания 4.
+## Задание 4.
 Для какого наименьшего числа А формула  тождественно истинна для любых целых
 положительных значений x и y. Напишите программу для решения данной задачи. 
 (x > 15) ∨ (x < 2y) ∨ (A > x+y)
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+for A in range(1, 100):
+    a = True
+    for x in range(1, 100):
+        for y in range(1, 100):
+            if not (x > 15) and not (x < 2*y) and not (A > x + y):
+                a = False
+                break
+        if not a:
+            break
+    if a:
+        print(A)
+        break
 ```
 
-## Задания 5.
+## Задание 5.
 Автомат обрабатывает натуральное число N по следующему алгоритму: 
 1. Строится двоичная запись числа N. 
 2. Складываются все цифры полученной двоичной записи. В конец записи (справа) дописывается 
@@ -66,12 +89,15 @@ for x in range(2):
 4. На экран выводится число 142. 
 Какое наибольшее число, меньшее 100, может появиться на экране в результате работы автомата?
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+a = 0
+for n in range(1, 100):
+    s = bin(n)[2:]
+    s = s + str(s.count('1') % 2)
+    s = s + str(s.count('1') % 2)
+    b = int(s, 2)
+    if b < 100 and b > a:
+        a = b
+print(a)
 ```
 
 ## Задания 6.
@@ -88,10 +114,13 @@ for x in range(2):
 4. На экран выводится число 142. 
 При каком наибольшем числе N алгоритм выведет число, меньшее 150?
 ```
-for x in range(2):
-    for y in range(2):
-        for z in range(2):
-            for w in range(2):
-                if ((x and (not y) or (y == z) or (not w))) == False:
-                    print(x, y, z, w)
+a = 0
+for n in range(1, 100):
+    s = bin(n)[2:]
+    s = s + str(s.count('1') % 2)
+    s = s + str(s.count('1') % 2)
+    b = int(s, 2)
+    if b < 150:
+        a = n
+print(a)
 ```
